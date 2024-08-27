@@ -1,0 +1,6 @@
+.idea
+accounts/*.sh
+!accounts/account_name.sh
+Dependencies/
+linuxbuild/
+check_and_update_gw_keys.sh

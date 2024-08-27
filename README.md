@@ -1,0 +1,1 @@
+Easy deployment for multiple party.gwtoolbox.com bots on a single host. Needs docker and git installed, nothing else.
