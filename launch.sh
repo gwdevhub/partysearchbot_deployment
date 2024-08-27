@@ -30,10 +30,16 @@ fi
 
 CONTAINER_NAME="partysearchbot_${ACCOUNT}"
 
-  # -v "$PWD/linuxbuild":/app/build \
+if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+    echo "Container with name $CONTAINER_NAME already exists. Removing it..."
+    docker rm -f -t 1 $CONTAINER_NAME
+fi
+
   # -v "$PWD/accounts":/app/accounts \
 docker run $DETACHED_MODE $RESTART_POLICY $LOG_MOUNT_OPTION --name "$CONTAINER_NAME" \
   --add-host party.gwtoolbox.com:217.160.162.89 \
+  -v "$PWD/linuxbuild":/app/build \
+  -v "$PWD/Dependencies":/app/Dependencies \
   -e ACCOUNT="$ACCOUNT" \
   partysearchbot_alpine sh -c "
     source /app/accounts/\$ACCOUNT.sh &&
