@@ -14,7 +14,7 @@ cd "$TMP_DIR"
 git clone --depth=1 --recursive https://github.com/gwdevhub/GuildWarsPartySearch.git
 
 # Build the code using an Alpine Docker container
-docker run --rm -v "$TMP_DIR/GuildWarsPartySearch":/app -w /app/GuildWarsPartySearch.Bot alpine:3.20 sh -c "apk add --no-cache bash cmake ninja alpine-sdk && cmake -B linuxbuild -G \"Ninja\" && ninja -C linuxbuild"
+docker run --rm -v "$TMP_DIR/GuildWarsPartySearch":/app:Z -w /app/GuildWarsPartySearch.Bot alpine:3.20 sh -c "apk add --no-cache bash cmake ninja alpine-sdk && cmake -B linuxbuild -G \"Ninja\" && ninja -C linuxbuild"
 
 # Stop all running containers that use the current image (after building)
 docker stop $(docker ps --format "{{.ID}} {{.Image}}" | grep "partysearchbot_alpine" | awk '{print $1}')

@@ -38,8 +38,6 @@ fi
   # -v "$PWD/accounts":/app/accounts \
 docker run $DETACHED_MODE $RESTART_POLICY $LOG_MOUNT_OPTION --name "$CONTAINER_NAME" \
   --add-host party.gwtoolbox.com:217.160.162.89 \
-  -v "$PWD/linuxbuild":/app/build \
-  -v "$PWD/Dependencies":/app/Dependencies \
   -e ACCOUNT="$ACCOUNT" \
   partysearchbot_alpine sh -c "
     source /app/accounts/\$ACCOUNT.sh &&
